@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frivet-dev%2Ftemplate-vercel&env=NEXT_PUBLIC_RIVET_ENDPOINT,NEXT_PUBLIC_RIVET_TOKEN,NEXT_PUBLIC_RIVET_NAMESPACE&project-name=rivetkit-vercel&repository-name=rivetkit-vercel)
+
 ## Getting Started
 
 First, run the development server:
