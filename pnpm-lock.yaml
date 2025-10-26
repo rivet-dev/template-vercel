@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@rivetkit/next-js':
-    specifier: ^2.0.19
-    version: 2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+    specifier: ^2.0.21
+    version: 2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
   eventsource:
     specifier: ^4.0.0
     version: 4.0.0
@@ -444,15 +444,33 @@ packages:
     resolution: {integrity: sha512-k2ENnmBugE/rzQfEcdWHcCY+/FM3VLzH9cYEsbdsoqrvzAKRhUZeRNhAZvB8OitQJ1TBed3yqWtdjzS6wJKBwg==}
     dev: false
 
+  /@rivetkit/engine-runner-protocol@2.0.21:
+    resolution: {integrity: sha512-2Yu7fwBWuh7sEPV9ynpm+BZSDqE6r8evte2h80WDhucNUxQIA2iK4XaV7AjypDmRc9+lvUj2bSihQWG+HQe2dg==}
+    dependencies:
+      '@bare-ts/lib': 0.4.0
+    dev: false
+
+  /@rivetkit/engine-runner@2.0.21:
+    resolution: {integrity: sha512-lHzyAGscryD0DzByuTBozkZypUNJPrROO8w3b5UGdx9btjUGJfgg+CP9DO2UqLfH1f4Fk6bn+PvNx4tsBBDI5A==}
+    dependencies:
+      '@rivetkit/engine-runner-protocol': 2.0.21
+      pino: 9.14.0
+      uuid: 12.0.0
+      ws: 8.18.3
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
   /@rivetkit/fast-json-patch@3.1.2:
     resolution: {integrity: sha512-CtA50xgsSSzICQduF/NDShPRzvucnNvsW/lQO0WgMTT1XAj9Lfae4pm7r3llFwilgG+9iq76Hv1LUqNy72v6yw==}
     dev: false
 
-  /@rivetkit/framework-base@2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-EsuJhs/i8104Wyth072PAuOx1ppwXUbx6rm1O7FUTGZv0eNngcNCTnlb7pSXGaEZmuu7fwftxwjLtb9EEWyFuA==}
+  /@rivetkit/framework-base@2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-kW5s5A9vnm2KGfflEhWukDR+KgUwF4vujyGST7KYj15QVwU4NkecrxiT2HmuNDfPkPD7tw4TlIPOEUlZY3l65A==}
     dependencies:
       '@tanstack/store': 0.7.7
-      rivetkit: 2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -463,17 +481,17 @@ packages:
       - ws
     dev: false
 
-  /@rivetkit/next-js@2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-dAQ1sAyhycw+tnd6KY/+1GYbhfMyMyifgctA3QIk9u9TJhdjc4IZ8K2ylDrVXFL2Pr57YSQLQLZgWEyt8cbzFA==}
+  /@rivetkit/next-js@2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-OjHL0qHYJc3JAVsN20wOv6HhVsvykrnZNr9J5lFf+l2GXnjMPCYvABh96kRHF6fFHInm2tzKB6mDele1sY72gQ==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/react': 2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+      '@rivetkit/react': 2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
       hono: 4.10.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -484,17 +502,17 @@ packages:
       - ws
     dev: false
 
-  /@rivetkit/react@2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-zxml+/VjGsifnExwqJzFTUoysEVDPYmA8Dcl7f1uBULPaU2NOluHTnRt67+Cr38Z3m0qpBEJ+s/aXCsu7PY2wg==}
+  /@rivetkit/react@2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-wN0czPN5u4GJSsEUjbiU7aTBiHH3K03GoyyJ7CQK8F43Sy+d8aS9/YpY4VTuyaG0o6qL6ce/F57DMvGT3bmlqw==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/framework-base': 2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      '@rivetkit/framework-base': 2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
       '@tanstack/react-store': 0.7.7(react-dom@19.1.0)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -822,6 +840,44 @@ packages:
       '@hono/standard-validator': 0.1.5(@standard-schema/spec@1.0.0)(hono@4.10.1)
       '@hono/zod-openapi': 0.19.10(hono@4.10.1)(zod@3.25.76)
       '@rivetkit/engine-runner': '@pkg.pr.new/rivet-dev/engine/@rivetkit/engine-runner@6659217'
+      '@rivetkit/fast-json-patch': 3.1.2
+      cbor-x: 1.6.0
+      eventsource: 4.0.0
+      hono: 4.10.1
+      invariant: 2.2.4
+      nanoevents: 9.1.0
+      on-change: 5.0.1
+      p-retry: 6.2.1
+      pino: 9.14.0
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - '@standard-schema/spec'
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
+  /rivetkit@2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-5KlIZ3bDD9aFS99mVDqYcndBljjr6vgwfCfZ6gJLtWOGtiZMljhCx4j4hOs7PBlDaFOl/zGDDZYrl8uC4LWTzw==}
+    engines: {node: '>=22.0.0'}
+    peerDependencies:
+      '@hono/node-server': ^1.14.0
+      '@hono/node-ws': ^1.1.1
+      eventsource: ^4.0.0
+      ws: ^8.0.0
+    peerDependenciesMeta:
+      '@hono/node-server':
+        optional: true
+      '@hono/node-ws':
+        optional: true
+      eventsource:
+        optional: true
+      ws:
+        optional: true
+    dependencies:
+      '@bare-ts/lib': 0.3.0
+      '@hono/standard-validator': 0.1.5(@standard-schema/spec@1.0.0)(hono@4.10.1)
+      '@hono/zod-openapi': 0.19.10(hono@4.10.1)(zod@3.25.76)
+      '@rivetkit/engine-runner': 2.0.21
       '@rivetkit/fast-json-patch': 3.1.2
       cbor-x: 1.6.0
       eventsource: 4.0.0
