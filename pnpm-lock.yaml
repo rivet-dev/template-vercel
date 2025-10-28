@@ -21,8 +21,8 @@ dependencies:
     specifier: 19.1.0
     version: 19.1.0(react@19.1.0)
   rivetkit:
-    specifier: ^2.0.19
-    version: 2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+    specifier: ^2.0.21
+    version: 2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
 
 devDependencies:
   '@types/node':
@@ -818,44 +818,6 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
-  /rivetkit@2.0.19(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-gw64SK3QbVEeZO/ExbL08x6YDb3EXnBhfYEgah0sC/nFyLBP77hrZaW6Bk3ltCXSHlCdrV/IzLOuUAwTkNsyaw==}
-    engines: {node: '>=22.0.0'}
-    peerDependencies:
-      '@hono/node-server': ^1.14.0
-      '@hono/node-ws': ^1.1.1
-      eventsource: ^4.0.0
-      ws: ^8.0.0
-    peerDependenciesMeta:
-      '@hono/node-server':
-        optional: true
-      '@hono/node-ws':
-        optional: true
-      eventsource:
-        optional: true
-      ws:
-        optional: true
-    dependencies:
-      '@bare-ts/lib': 0.3.0
-      '@hono/standard-validator': 0.1.5(@standard-schema/spec@1.0.0)(hono@4.10.1)
-      '@hono/zod-openapi': 0.19.10(hono@4.10.1)(zod@3.25.76)
-      '@rivetkit/engine-runner': '@pkg.pr.new/rivet-dev/engine/@rivetkit/engine-runner@6659217'
-      '@rivetkit/fast-json-patch': 3.1.2
-      cbor-x: 1.6.0
-      eventsource: 4.0.0
-      hono: 4.10.1
-      invariant: 2.2.4
-      nanoevents: 9.1.0
-      on-change: 5.0.1
-      p-retry: 6.2.1
-      pino: 9.14.0
-      zod: 3.25.76
-    transitivePeerDependencies:
-      - '@standard-schema/spec'
-      - bufferutil
-      - utf-8-validate
-    dev: false
-
   /rivetkit@2.0.21(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
     resolution: {integrity: sha512-5KlIZ3bDD9aFS99mVDqYcndBljjr6vgwfCfZ6gJLtWOGtiZMljhCx4j4hOs7PBlDaFOl/zGDDZYrl8uC4LWTzw==}
     engines: {node: '>=22.0.0'}
@@ -1032,26 +994,4 @@ packages:
 
   /zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
-    dev: false
-
-  '@pkg.pr.new/rivet-dev/engine/@rivetkit/engine-runner-protocol@6659217e0ccdad8597449d0a01f4696e42a6a5eb':
-    resolution: {tarball: https://pkg.pr.new/rivet-dev/engine/@rivetkit/engine-runner-protocol@6659217e0ccdad8597449d0a01f4696e42a6a5eb}
-    name: '@rivetkit/engine-runner-protocol'
-    version: 25.7.3
-    dependencies:
-      '@bare-ts/lib': 0.4.0
-    dev: false
-
-  '@pkg.pr.new/rivet-dev/engine/@rivetkit/engine-runner@6659217':
-    resolution: {tarball: https://pkg.pr.new/rivet-dev/engine/@rivetkit/engine-runner@6659217}
-    name: '@rivetkit/engine-runner'
-    version: 25.7.3
-    dependencies:
-      '@rivetkit/engine-runner-protocol': '@pkg.pr.new/rivet-dev/engine/@rivetkit/engine-runner-protocol@6659217e0ccdad8597449d0a01f4696e42a6a5eb'
-      pino: 9.14.0
-      uuid: 12.0.0
-      ws: 8.18.3
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
     dev: false
