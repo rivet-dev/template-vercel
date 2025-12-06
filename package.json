@@ -11,7 +11,7 @@
 	"dependencies": {
 		"@rivetkit/next-js": "^2.0.24",
 		"eventsource": "^4.0.0",
-		"next": "15.4.5",
+		"next": "15.4.8",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
 		"rivetkit": "^2.0.24"
