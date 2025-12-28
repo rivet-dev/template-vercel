@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@rivetkit/next-js':
-    specifier: ^2.0.29
-    version: 2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+    specifier: ^2.0.31
+    version: 2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
   eventsource:
     specifier: ^4.0.0
     version: 4.0.0
@@ -21,8 +21,8 @@ dependencies:
     specifier: 19.1.0
     version: 19.1.0(react@19.1.0)
   rivetkit:
-    specifier: ^2.0.29
-    version: 2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+    specifier: ^2.0.31
+    version: 2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
 
 devDependencies:
   '@types/node':
@@ -463,16 +463,16 @@ packages:
     resolution: {integrity: sha512-k2ENnmBugE/rzQfEcdWHcCY+/FM3VLzH9cYEsbdsoqrvzAKRhUZeRNhAZvB8OitQJ1TBed3yqWtdjzS6wJKBwg==}
     dev: false
 
-  /@rivetkit/engine-runner-protocol@2.0.29:
-    resolution: {integrity: sha512-Fr3YoGfuLSqocra1RpcJgSllTYyuCRs4KmL79IVw5+oCtwIFdZIsrnodWX/ipnXJsTN1aYlBYyJth2fbO2h7Tg==}
+  /@rivetkit/engine-runner-protocol@2.0.31:
+    resolution: {integrity: sha512-wsiXLfYyjmw/q8Y8MGH+QgjjJsZzMYPAK3RA9zoHBG6PUFKeH05YFOU9adDA10KSWM2Xp7h/Das9XvTmLXKW+A==}
     dependencies:
       '@bare-ts/lib': 0.4.0
     dev: false
 
-  /@rivetkit/engine-runner@2.0.29:
-    resolution: {integrity: sha512-odf9+CDFxEtRKVe5+43rAYotOLL+PSdtqDo34/8P7ft7knIRko5bbU7JPMaqFerRfYp+bv9FKotp14MGQJB14w==}
+  /@rivetkit/engine-runner@2.0.31:
+    resolution: {integrity: sha512-PsBZ5CR/kEEBJ56puVlksq4nNOk4Kzxt72Kav5uYEJDz4nxi2IY+NVP/zXZbRoRGqiX3TR7I0Fk6xvx5ubchUA==}
     dependencies:
-      '@rivetkit/engine-runner-protocol': 2.0.29
+      '@rivetkit/engine-runner-protocol': 2.0.31
       pino: 9.14.0
       uuid: 12.0.0
       ws: 8.18.3
@@ -485,11 +485,12 @@ packages:
     resolution: {integrity: sha512-CtA50xgsSSzICQduF/NDShPRzvucnNvsW/lQO0WgMTT1XAj9Lfae4pm7r3llFwilgG+9iq76Hv1LUqNy72v6yw==}
     dev: false
 
-  /@rivetkit/framework-base@2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-qJH3a6QlAlAob5o3WrkGQLtEKfXjqeDsj6VpbJ1lS1IEkLIeAE2fpW+K0PeEHnDmGpWYF4xjX9tzlZiTIPU2Lw==}
+  /@rivetkit/framework-base@2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-3OfSePBDrMmtuSlaVgnnRPkEPXK/xO0hOycLrJ2rCZOu8bCd3/b1cfD9zFT/tMvK31hkp6Gpd+O4VTiJ84iQgg==}
     dependencies:
       '@tanstack/store': 0.7.7
-      rivetkit: 2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      fast-deep-equal: 3.1.3
+      rivetkit: 2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -500,17 +501,17 @@ packages:
       - ws
     dev: false
 
-  /@rivetkit/next-js@2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-nXKWPfCb3xxIxdd1KqVIVpSmE4QSFS52um0Vf26Tw0WIPVp/+k26dEDmsGEnD+LuXdc1NBfmQxJBXnh/9dXrwg==}
+  /@rivetkit/next-js@2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-Qbcyq0cF887vtogY8ifRPUND5IPiY4Q7tDzgPRIMimpGruSTKZomDIgeCKT1uSz+YC60ii5SQK8dCjioTJBkzw==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/react': 2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+      '@rivetkit/react': 2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
       hono: 4.10.8
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -526,17 +527,17 @@ packages:
     engines: {node: '>=20'}
     dev: false
 
-  /@rivetkit/react@2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-fYb1q+g2ddYsqcsDVZpReD7jJMab2TIAiqcpMS4Cd+uw8QrznEubRko0sASTN1atpJoqkq1OZ5TPOsI28d/n6Q==}
+  /@rivetkit/react@2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-mRKvu5zzF/dItqE05hXVQ+n3HhJenTynaYKBxPi7KTUBPwaK3U2uiwniLBwuJOkPkQPEll19L29pFF9ICzzf6g==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/framework-base': 2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      '@rivetkit/framework-base': 2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
       '@tanstack/react-store': 0.7.7(react-dom@19.1.0)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -653,6 +654,10 @@ packages:
     engines: {node: '>=20.0.0'}
     dependencies:
       eventsource-parser: 3.0.6
+    dev: false
+
+  /fast-deep-equal@3.1.3:
+    resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
     dev: false
 
   /hono@4.10.8:
@@ -842,8 +847,8 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
-  /rivetkit@2.0.29(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-W+sl+Zz+AP+ejkDcfPaS0sjwRvaYcnD5fBdhNFAYZlPGLPhKclPaccvGxuE4pKJLfW88LaycMthmabOWQwrbdw==}
+  /rivetkit@2.0.31(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-E4XtZIs8/GyiNVVoYkqpTX/I1yLnsD31R+v1U2PmlEdSQ9NWOFjAZv5bQDjnfXRoDWLBf0Vb68/nu2kdPZYGMw==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@hono/node-server': ^1.14.0
@@ -863,7 +868,7 @@ packages:
       '@bare-ts/lib': 0.3.0
       '@hono/standard-validator': 0.1.5(@standard-schema/spec@1.0.0)(hono@4.11.1)
       '@hono/zod-openapi': 1.1.5(hono@4.11.1)(zod@4.2.0)
-      '@rivetkit/engine-runner': 2.0.29
+      '@rivetkit/engine-runner': 2.0.31
       '@rivetkit/fast-json-patch': 3.1.2
       '@rivetkit/on-change': 6.0.2-rc.1
       cbor-x: 1.6.0
