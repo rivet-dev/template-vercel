@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@rivetkit/next-js':
-    specifier: ^2.0.35
-    version: 2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+    specifier: ^2.0.37
+    version: 2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
   eventsource:
     specifier: ^4.0.0
     version: 4.0.0
@@ -21,8 +21,8 @@ dependencies:
     specifier: 19.1.0
     version: 19.1.0(react@19.1.0)
   rivetkit:
-    specifier: ^2.0.35
-    version: 2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+    specifier: ^2.0.37
+    version: 2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)
 
 devDependencies:
   '@types/node':
@@ -40,13 +40,13 @@ devDependencies:
 
 packages:
 
-  /@asteasolutions/zod-to-openapi@8.2.0(zod@4.2.0):
-    resolution: {integrity: sha512-u05zNUirlukJAf9oEHmxSF31L1XQhz9XdpVILt7+xhrz65oQqBpiOWFkGvRWL0IpjOUJ878idKoNmYPxrFnkeg==}
+  /@asteasolutions/zod-to-openapi@8.4.0(zod@4.3.5):
+    resolution: {integrity: sha512-Ckp971tmTw4pnv+o7iK85ldBHBKk6gxMaoNyLn3c2Th/fKoTG8G3jdYuOanpdGqwlDB0z01FOjry2d32lfTqrA==}
     peerDependencies:
       zod: ^4.0.0
     dependencies:
       openapi3-ts: 4.5.0
-      zod: 4.2.0
+      zod: 4.3.5
     dev: false
 
   /@cbor-extract/cbor-extract-darwin-arm64@2.2.0:
@@ -97,46 +97,46 @@ packages:
     dev: false
     optional: true
 
-  /@emnapi/runtime@1.7.1:
-    resolution: {integrity: sha512-PVtJr5CmLwYAU9PZDMITZoR5iAOShYREoR45EyyLrbntV50mdePTgUn4AmOw90Ifcj+x2kRjdzr1HP3RrNiHGA==}
+  /@emnapi/runtime@1.8.1:
+    resolution: {integrity: sha512-mehfKSMWjjNol8659Z8KxEMrdSJDDot5SXMq00dM8BN4o+CLNXQ0xH2V7EchNHV4RmbZLmmPdEaXZc5H2FXmDg==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
     dev: false
     optional: true
 
-  /@hono/standard-validator@0.1.5(@standard-schema/spec@1.0.0)(hono@4.11.1):
+  /@hono/standard-validator@0.1.5(@standard-schema/spec@1.1.0)(hono@4.11.4):
     resolution: {integrity: sha512-EIyZPPwkyLn6XKwFj5NBEWHXhXbgmnVh2ceIFo5GO7gKI9WmzTjPDKnppQB0KrqKeAkq3kpoW4SIbu5X1dgx3w==}
     peerDependencies:
       '@standard-schema/spec': 1.0.0
       hono: '>=3.9.0'
     dependencies:
-      '@standard-schema/spec': 1.0.0
-      hono: 4.11.1
+      '@standard-schema/spec': 1.1.0
+      hono: 4.11.4
     dev: false
 
-  /@hono/zod-openapi@1.1.5(hono@4.11.1)(zod@4.2.0):
-    resolution: {integrity: sha512-EAnY6ad4yt/MUKHx716BEGGOXSl5d0/FOLozOYB/pmSEFq07qrzefKFtBEMAgd3hlpJXjH+4lwgTtlAo+BGBgQ==}
+  /@hono/zod-openapi@1.2.0(hono@4.11.4)(zod@4.3.5):
+    resolution: {integrity: sha512-KDfHqv/Wy4elVseZXgokbHxeWuqBL+AZfqsOMpEihBMUsk/fJ+bLIi3Sf70JFVpt1Ihui8RasYrInozt7ZBDIA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       hono: '>=4.3.6'
       zod: ^4.0.0
     dependencies:
-      '@asteasolutions/zod-to-openapi': 8.2.0(zod@4.2.0)
-      '@hono/zod-validator': 0.7.5(hono@4.11.1)(zod@4.2.0)
-      hono: 4.11.1
+      '@asteasolutions/zod-to-openapi': 8.4.0(zod@4.3.5)
+      '@hono/zod-validator': 0.7.6(hono@4.11.4)(zod@4.3.5)
+      hono: 4.11.4
       openapi3-ts: 4.5.0
-      zod: 4.2.0
+      zod: 4.3.5
     dev: false
 
-  /@hono/zod-validator@0.7.5(hono@4.11.1)(zod@4.2.0):
-    resolution: {integrity: sha512-n4l4hutkfYU07PzRUHBOVzUEn38VSfrh+UVE5d0w4lyfWDOEhzxIupqo5iakRiJL44c3vTuFJBvcmUl8b9agIA==}
+  /@hono/zod-validator@0.7.6(hono@4.11.4)(zod@4.3.5):
+    resolution: {integrity: sha512-Io1B6d011Gj1KknV4rXYz4le5+5EubcWEU/speUjuw9XMMIaP3n78yXLhjd2A3PXaXaUwEAluOiAyLqhBEJgsw==}
     peerDependencies:
       hono: '>=3.9.0'
       zod: ^3.25.0 || ^4.0.0
     dependencies:
-      hono: 4.11.1
-      zod: 4.2.0
+      hono: 4.11.4
+      zod: 4.3.5
     dev: false
 
   /@img/colour@1.0.0:
@@ -342,7 +342,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@emnapi/runtime': 1.7.1
+      '@emnapi/runtime': 1.8.1
     dev: false
     optional: true
 
@@ -458,20 +458,20 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     dev: false
 
-  /@rivetkit/engine-runner-protocol@2.0.35:
-    resolution: {integrity: sha512-+FswPLChsqv4F5JddGD1RkEjcaJdA8midyWXWn+UoS4uNBT4YXxuTzjuH4VaC01G1NHXR7+lNhQ5TkcbPO/Puw==}
+  /@rivetkit/engine-runner-protocol@2.0.37:
+    resolution: {integrity: sha512-Avj98//c6Y6+43TcAMdRW0XasaLxBtjK6Keg0+lVjHLCgV1ydnbsYl8boITH/Us0WUoIEZZH5uwaJUTCy2puGw==}
     dependencies:
       '@rivetkit/bare-ts': 0.6.2
     dev: false
 
-  /@rivetkit/engine-runner@2.0.35:
-    resolution: {integrity: sha512-w0Sp0ljfQ5xHr7UVjX0YAbnFTEOigvGH931eNln/bgGOOVHHJTc1TRTLt1qVY8+VAaYNH9nbav2op3KG6ZQ9cg==}
+  /@rivetkit/engine-runner@2.0.37:
+    resolution: {integrity: sha512-gMWt2mCNMKQ5EgjfNsN9Ox32RGPT1TYRt4mBj0Zp9bnhsvnMzFqGGOxS+VoSWBBH2qln3JRLLumhKDkFOVDJKQ==}
     dependencies:
-      '@rivetkit/engine-runner-protocol': 2.0.35
+      '@rivetkit/engine-runner-protocol': 2.0.37
       '@rivetkit/virtual-websocket': 2.0.33
       pino: 9.14.0
       uuid: 12.0.0
-      ws: 8.18.3
+      ws: 8.19.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -481,12 +481,12 @@ packages:
     resolution: {integrity: sha512-CtA50xgsSSzICQduF/NDShPRzvucnNvsW/lQO0WgMTT1XAj9Lfae4pm7r3llFwilgG+9iq76Hv1LUqNy72v6yw==}
     dev: false
 
-  /@rivetkit/framework-base@2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-/ZZ1ijkZL8QNuERxTT5Jd6SI5tFh+f/AHeE51rBChGqepvTVZoWGerckbZGhZFsnDYLM+TK/FqTw4BoDVla6Sw==}
+  /@rivetkit/framework-base@2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-w7POPB62DMpzSk/Oy3puf+ra1PH9jyfbk9P/N+CGNVpWRJmCqOHxAJfPMMw43OXlHTEN56ifLV631ui+AMysNQ==}
     dependencies:
       '@tanstack/store': 0.7.7
       fast-deep-equal: 3.1.3
-      rivetkit: 2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -497,17 +497,17 @@ packages:
       - ws
     dev: false
 
-  /@rivetkit/next-js@2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-m2PxNM4v2FoukUL35Og7taRxfoklM7mhWeVLomCygg+S9RmtcaiCYfwU9LPQyKkHhS9Wu6Ye5jiUGSTsosAnAg==}
+  /@rivetkit/next-js@2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-UrKbo1GK3EfJGFmVYVTFY9tTF+i05z8BH4rTW4vZOYMgKeVAbh1nZqX7X8fZXTH4C0AAnUiB0zsVIEsYaqEtEA==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/react': 2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
-      hono: 4.11.1
+      '@rivetkit/react': 2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+      hono: 4.11.4
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -523,17 +523,17 @@ packages:
     engines: {node: '>=20'}
     dev: false
 
-  /@rivetkit/react@2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-mzllQ8GFmbru54KU3B9jsRJz0vzEdOovHBcQSSKb5gQSc3wf+uVPkizAoagxoien5AmszH3qQgbVWyQq0LPISw==}
+  /@rivetkit/react@2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-ubnU4dZipqL8xsUXpKwl6dq4SE+m12F+XyEUnB6uCV/OVdaZekxUXutGm/u+auTPu5Zh8wBRAltr3OTA1wcgIw==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/framework-base': 2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      '@rivetkit/framework-base': 2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)
       '@tanstack/react-store': 0.7.7(react-dom@19.1.0)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -548,8 +548,8 @@ packages:
     resolution: {integrity: sha512-sMoHZgBy9WDW76pv+ML3LPgf7TWk5vXdu3ZpPO20j6n+rB3fLacnnmzjt5xD6tZcJ/x5qINyEywGgcxA7MTMuQ==}
     dev: false
 
-  /@standard-schema/spec@1.0.0:
-    resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+  /@standard-schema/spec@1.1.0:
+    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
     dev: false
 
   /@swc/helpers@0.5.15:
@@ -665,8 +665,8 @@ packages:
     engines: {node: '>=16'}
     dev: false
 
-  /hono@4.11.1:
-    resolution: {integrity: sha512-KsFcH0xxHes0J4zaQgWbYwmz3UPOOskdqZmItstUG93+Wk1ePBLkLGwbP9zlmh1BFUiL8Qp+Xfu9P7feJWpGNg==}
+  /hono@4.11.4:
+    resolution: {integrity: sha512-U7tt8JsyrxSRKspfhtLET79pU8K+tInj5QZXs1jSugO1Vq5dFj3kmZsRldo29mTBfcjDRVRXrEZ6LS63Cog9ZA==}
     engines: {node: '>=16.9.0'}
     dev: false
 
@@ -785,8 +785,8 @@ packages:
       split2: 4.2.0
     dev: false
 
-  /pino-std-serializers@7.0.0:
-    resolution: {integrity: sha512-e906FRY0+tV27iq4juKzSYPbUj2do2X2JX4EzSca1631EB2QJQUqGbDuERal7LCtOpxl6x3+nvo9NPZcmjkiFA==}
+  /pino-std-serializers@7.1.0:
+    resolution: {integrity: sha512-BndPH67/JxGExRgiX1dX0w1FvZck5Wa4aal9198SrRhZjH3GxKQUKIBnYJTdj2HDN3UQAS06HlfcSbQj2OHmaw==}
     dev: false
 
   /pino@9.14.0:
@@ -797,7 +797,7 @@ packages:
       atomic-sleep: 1.0.0
       on-exit-leak-free: 2.1.2
       pino-abstract-transport: 2.0.0
-      pino-std-serializers: 7.0.0
+      pino-std-serializers: 7.1.0
       process-warning: 5.0.0
       quick-format-unescaped: 4.0.4
       real-require: 0.2.0
@@ -847,8 +847,8 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
-  /rivetkit@2.0.35(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-yL30JXq5VDutNWHpcWufk7xo4IZuy6qhuFvIwnlYXu0UumIB/h7L8CPHW8vtPUjLt6jnEKUpEtb+Y0XxxX9jHQ==}
+  /rivetkit@2.0.37(@standard-schema/spec@1.1.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-R2eoSm6w1tFQjeZfWNKN+9v3ZA0IQoSzATJek17YkDQnLYI5va/H9bgE/cQfci82FgAeR8m7JMbFs/hS0JsWTQ==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@hono/node-server': ^1.14.0
@@ -865,24 +865,24 @@ packages:
       ws:
         optional: true
     dependencies:
-      '@hono/standard-validator': 0.1.5(@standard-schema/spec@1.0.0)(hono@4.11.1)
-      '@hono/zod-openapi': 1.1.5(hono@4.11.1)(zod@4.2.0)
+      '@hono/standard-validator': 0.1.5(@standard-schema/spec@1.1.0)(hono@4.11.4)
+      '@hono/zod-openapi': 1.2.0(hono@4.11.4)(zod@4.3.5)
       '@rivetkit/bare-ts': 0.6.2
-      '@rivetkit/engine-runner': 2.0.35
+      '@rivetkit/engine-runner': 2.0.37
       '@rivetkit/fast-json-patch': 3.1.2
       '@rivetkit/on-change': 6.0.2-rc.1
       '@rivetkit/virtual-websocket': 2.0.33
       cbor-x: 1.6.0
       eventsource: 4.0.0
       get-port: 7.1.0
-      hono: 4.11.1
+      hono: 4.11.4
       invariant: 2.2.4
       nanoevents: 9.1.0
       p-retry: 6.2.1
       pino: 9.14.0
       uuid: 12.0.0
       vbare: 0.0.4
-      zod: 4.2.0
+      zod: 4.3.5
     transitivePeerDependencies:
       - '@standard-schema/spec'
       - bufferutil
@@ -1013,8 +1013,8 @@ packages:
     engines: {node: '>=18.0.0'}
     dev: false
 
-  /ws@8.18.3:
-    resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
+  /ws@8.19.0:
+    resolution: {integrity: sha512-blAT2mjOEIi0ZzruJfIhb3nps74PRWTCz1IjglWEEpQl5XS/UNama6u2/rjFkDDouqr4L67ry+1aGIALViWjDg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -1032,6 +1032,6 @@ packages:
     hasBin: true
     dev: false
 
-  /zod@4.2.0:
-    resolution: {integrity: sha512-Bd5fw9wlIhtqCCxotZgdTOMwGm1a0u75wARVEY9HMs1X17trvA/lMi4+MGK5EUfYkXVTbX8UDiDKW4OgzHVUZw==}
+  /zod@4.3.5:
+    resolution: {integrity: sha512-k7Nwx6vuWx1IJ9Bjuf4Zt1PEllcwe7cls3VNzm4CQ1/hgtFUK2bRNG3rvnpPUhFjmqJKAKtjV576KnUkHocg/g==}
     dev: false
