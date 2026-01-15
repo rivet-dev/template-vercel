@@ -4,11 +4,7 @@ import { createRivetKit } from "@rivetkit/next-js/client";
 import { useEffect, useState, useRef } from "react";
 import type { Message, registry } from "../rivet/registry";
 
-export const { useActor } = createRivetKit<typeof registry>({
-	endpoint: process.env.NEXT_PUBLIC_RIVET_ENDPOINT ?? "http://localhost:3000/api/rivet",
-	namespace: process.env.NEXT_PUBLIC_RIVET_NAMESPACE,
-	token: process.env.NEXT_PUBLIC_RIVET_TOKEN,
-});
+export const { useActor } = createRivetKit<typeof registry>();
 
 // Generate avatar color based on username
 const getAvatarColor = (username: string) => {
