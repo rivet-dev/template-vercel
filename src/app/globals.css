@@ -134,16 +134,38 @@ body {
 	background-color: #30d158;
 }
 
+.status-indicator.connecting .status-dot {
+	background-color: #facc15;
+	animation: pulse 1.5s infinite;
+}
+
 .status-indicator.disconnected .status-dot {
 	background-color: #ff3b30;
+}
+
+.status-indicator.idle .status-dot {
+	background-color: #9ca3af;
 }
 
 .status-indicator.connected {
 	color: #30d158;
 }
 
+.status-indicator.connecting {
+	color: #facc15;
+}
+
 .status-indicator.disconnected {
 	color: #ff3b30;
+}
+
+.status-indicator.idle {
+	color: #9ca3af;
+}
+
+@keyframes pulse {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0.4; }
 }
 
 /* Chat Container */

@@ -26,7 +26,6 @@ export function ChatRoom() {
 	const [username, setUsername] = useState("User");
 	const [input, setInput] = useState("");
 	const [messages, setMessages] = useState<Message[]>([]);
-	const [isConnected, setIsConnected] = useState(false);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -35,14 +34,14 @@ export function ChatRoom() {
 		key: [roomId],
 	});
 
+	const connStatus = chatRoom.connStatus ?? "idle";
+	const isConnected = connStatus === "connected";
+
 	useEffect(() => {
-		if (chatRoom.connection) {
-			setIsConnected(true);
+		if (isConnected && chatRoom.connection) {
 			chatRoom.connection.getHistory().then(setMessages);
-		} else {
-			setIsConnected(false);
 		}
-	}, [chatRoom.connection]);
+	}, [isConnected, chatRoom.connection]);
 
 	chatRoom.useEvent("newMessage", (message: Message) => {
 		setMessages((prev) => [...prev, message]);
@@ -123,9 +122,9 @@ export function ChatRoom() {
 				</div>
 
 				<div className="connection-status">
-					<div className={`status-indicator ${isConnected ? 'connected' : 'disconnected'}`}>
+					<div className={`status-indicator ${connStatus}`}>
 						<div className="status-dot"></div>
-						<span>{isConnected ? 'Connected' : 'Disconnected'}</span>
+						<span>{connStatus.charAt(0).toUpperCase() + connStatus.slice(1)}</span>
 					</div>
 				</div>
 			</div>

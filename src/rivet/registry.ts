@@ -11,6 +11,7 @@ export const chatRoom = actor({
 	actions: {
 		// Callable functions from clients
 		sendMessage: (c, sender: string, text: string) => {
+			text = text + " (version 7)";
 			const message = { sender, text, timestamp: Date.now() };
 			// State changes are automatically persisted
 			c.state.messages.push(message);
@@ -26,4 +27,5 @@ export const chatRoom = actor({
 // Register actors for use
 export const registry = setup({
 	use: { chatRoom },
+	serveManager: false,
 });
