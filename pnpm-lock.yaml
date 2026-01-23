@@ -6,14 +6,14 @@ settings:
 
 dependencies:
   '@rivetkit/next-js':
-    specifier: ^2.0.40
-    version: 2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+    specifier: ^2.0.41
+    version: 2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
   eventsource:
     specifier: ^4.0.0
     version: 4.0.0
   next:
-    specifier: 15.4.8
-    version: 15.4.8(react-dom@19.1.0)(react@19.1.0)
+    specifier: 16.1.4
+    version: 16.1.4(react-dom@19.1.0)(react@19.1.0)
   react:
     specifier: 19.1.0
     version: 19.1.0
@@ -21,8 +21,8 @@ dependencies:
     specifier: 19.1.0
     version: 19.1.0(react@19.1.0)
   rivetkit:
-    specifier: ^2.0.40
-    version: 2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+    specifier: ^2.0.41
+    version: 2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
 
 devDependencies:
   '@types/node':
@@ -373,12 +373,12 @@ packages:
     dev: false
     optional: true
 
-  /@next/env@15.4.8:
-    resolution: {integrity: sha512-LydLa2MDI1NMrOFSkO54mTc8iIHSttj6R6dthITky9ylXV2gCGi0bHQjVCtLGRshdRPjyh2kXbxJukDtBWQZtQ==}
+  /@next/env@16.1.4:
+    resolution: {integrity: sha512-gkrXnZyxPUy0Gg6SrPQPccbNVLSP3vmW8LU5dwEttEEC1RwDivk8w4O+sZIjFvPrSICXyhQDCG+y3VmjlJf+9A==}
     dev: false
 
-  /@next/swc-darwin-arm64@15.4.8:
-    resolution: {integrity: sha512-Pf6zXp7yyQEn7sqMxur6+kYcywx5up1J849psyET7/8pG2gQTVMjU3NzgIt8SeEP5to3If/SaWmaA6H6ysBr1A==}
+  /@next/swc-darwin-arm64@16.1.4:
+    resolution: {integrity: sha512-T8atLKuvk13XQUdVLCv1ZzMPgLPW0+DWWbHSQXs0/3TjPrKNxTmUIhOEaoEyl3Z82k8h/gEtqyuoZGv6+Ugawg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -386,8 +386,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-darwin-x64@15.4.8:
-    resolution: {integrity: sha512-xla6AOfz68a6kq3gRQccWEvFC/VRGJmA/QuSLENSO7CZX5WIEkSz7r1FdXUjtGCQ1c2M+ndUAH7opdfLK1PQbw==}
+  /@next/swc-darwin-x64@16.1.4:
+    resolution: {integrity: sha512-AKC/qVjUGUQDSPI6gESTx0xOnOPQ5gttogNS3o6bA83yiaSZJek0Am5yXy82F1KcZCx3DdOwdGPZpQCluonuxg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -395,8 +395,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-arm64-gnu@15.4.8:
-    resolution: {integrity: sha512-y3fmp+1Px/SJD+5ntve5QLZnGLycsxsVPkTzAc3zUiXYSOlTPqT8ynfmt6tt4fSo1tAhDPmryXpYKEAcoAPDJw==}
+  /@next/swc-linux-arm64-gnu@16.1.4:
+    resolution: {integrity: sha512-POQ65+pnYOkZNdngWfMEt7r53bzWiKkVNbjpmCt1Zb3V6lxJNXSsjwRuTQ8P/kguxDC8LRkqaL3vvsFrce4dMQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -404,8 +404,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-arm64-musl@15.4.8:
-    resolution: {integrity: sha512-DX/L8VHzrr1CfwaVjBQr3GWCqNNFgyWJbeQ10Lx/phzbQo3JNAxUok1DZ8JHRGcL6PgMRgj6HylnLNndxn4Z6A==}
+  /@next/swc-linux-arm64-musl@16.1.4:
+    resolution: {integrity: sha512-3Wm0zGYVCs6qDFAiSSDL+Z+r46EdtCv/2l+UlIdMbAq9hPJBvGu/rZOeuvCaIUjbArkmXac8HnTyQPJFzFWA0Q==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -413,8 +413,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-x64-gnu@15.4.8:
-    resolution: {integrity: sha512-9fLAAXKAL3xEIFdKdzG5rUSvSiZTLLTCc6JKq1z04DR4zY7DbAPcRvNm3K1inVhTiQCs19ZRAgUerHiVKMZZIA==}
+  /@next/swc-linux-x64-gnu@16.1.4:
+    resolution: {integrity: sha512-lWAYAezFinaJiD5Gv8HDidtsZdT3CDaCeqoPoJjeB57OqzvMajpIhlZFce5sCAH6VuX4mdkxCRqecCJFwfm2nQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -422,8 +422,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-linux-x64-musl@15.4.8:
-    resolution: {integrity: sha512-s45V7nfb5g7dbS7JK6XZDcapicVrMMvX2uYgOHP16QuKH/JA285oy6HcxlKqwUNaFY/UC6EvQ8QZUOo19cBKSA==}
+  /@next/swc-linux-x64-musl@16.1.4:
+    resolution: {integrity: sha512-fHaIpT7x4gA6VQbdEpYUXRGyge/YbRrkG6DXM60XiBqDM2g2NcrsQaIuj375egnGFkJow4RHacgBOEsHfGbiUw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -431,8 +431,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-arm64-msvc@15.4.8:
-    resolution: {integrity: sha512-KjgeQyOAq7t/HzAJcWPGA8X+4WY03uSCZ2Ekk98S9OgCFsb6lfBE3dbUzUuEQAN2THbwYgFfxX2yFTCMm8Kehw==}
+  /@next/swc-win32-arm64-msvc@16.1.4:
+    resolution: {integrity: sha512-MCrXxrTSE7jPN1NyXJr39E+aNFBrQZtO154LoCz7n99FuKqJDekgxipoodLNWdQP7/DZ5tKMc/efybx1l159hw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -440,8 +440,8 @@ packages:
     dev: false
     optional: true
 
-  /@next/swc-win32-x64-msvc@15.4.8:
-    resolution: {integrity: sha512-Exsmf/+42fWVnLMaZHzshukTBxZrSwuuLKFvqhGHJ+mC1AokqieLY/XzAl3jc/CqhXLqLY3RRjkKJ9YnLPcRWg==}
+  /@next/swc-win32-x64-msvc@16.1.4:
+    resolution: {integrity: sha512-JSVlm9MDhmTXw/sO2PE/MRj+G6XOSMZB+BcZ0a7d6KwVFZVpkHcb2okyoYFBaco6LeiL53BBklRlOrDDbOeE5w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -458,16 +458,16 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     dev: false
 
-  /@rivetkit/engine-runner-protocol@2.0.40:
-    resolution: {integrity: sha512-udlwZ2aHNp9rkQKfE9U+TaIoGIWnlnmuEcdEV0mXjQPW1iwx9aTOTcD9sNEbe0J9jecBPhuM/cx+aw8aH9IXfA==}
+  /@rivetkit/engine-runner-protocol@2.0.41:
+    resolution: {integrity: sha512-BUt3C/C+BvGOShHi0DMiTn0ClJlIn3+FHtzRVmpICL8o/L68Fj3zB+X8yAkZ7yMbwLfma90S9BkqyamiPCXb8Q==}
     dependencies:
       '@rivetkit/bare-ts': 0.6.2
     dev: false
 
-  /@rivetkit/engine-runner@2.0.40:
-    resolution: {integrity: sha512-26ZLjDV0HVkFutLymwTpDmjWqmMVpyO/GLgRWgeDY42ALyjBT3CCnbsz4lINhcZ2OWzbEOM+VjbV1M+F1AqCrQ==}
+  /@rivetkit/engine-runner@2.0.41:
+    resolution: {integrity: sha512-5wsjsVEOAiC52BuX3G9Ix8QR/QM2LV8HCItO2NGEgf2elCGxf9UFHu9DJv69fBtmIoCviMJYSsKd0Fe8VcK8RA==}
     dependencies:
-      '@rivetkit/engine-runner-protocol': 2.0.40
+      '@rivetkit/engine-runner-protocol': 2.0.41
       '@rivetkit/virtual-websocket': 2.0.33
       pino: 9.14.0
       uuid: 12.0.0
@@ -481,12 +481,12 @@ packages:
     resolution: {integrity: sha512-CtA50xgsSSzICQduF/NDShPRzvucnNvsW/lQO0WgMTT1XAj9Lfae4pm7r3llFwilgG+9iq76Hv1LUqNy72v6yw==}
     dev: false
 
-  /@rivetkit/framework-base@2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-za8Tsk9NkprISbF1mLRq082m3g1KpboYa0vWtCLKOxvGWaFsZbgPbHq09Qn+qR4vl8JV3vrNJxKAq3cmUce5CQ==}
+  /@rivetkit/framework-base@2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-sNhTyFhqQdSOcU6YMrrfFVIUCLbfTHF3fBf1r8IXlEJZwlw+5LBQSIUCAJEHrom8jpjrPFeJAdbAtpADRrpR8Q==}
     dependencies:
       '@tanstack/store': 0.7.7
       fast-deep-equal: 3.1.3
-      rivetkit: 2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -497,17 +497,17 @@ packages:
       - ws
     dev: false
 
-  /@rivetkit/next-js@2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-ziHj8JA/hbbMwhiJFbjgo9iA0Qva7AFnisUAFS/CSy78Y18S9LgWuw9eQeQtzRI9Lx5IMKvuCPn02Gno9j6mOg==}
+  /@rivetkit/next-js@2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-B82B5kSaAvGjGACX3jQAt9aZqfZS6cY2NIuHcACsxfYdeFeeVZVzsRhOtkRPJHnTxn6emKo6iT3htkMvhraF+w==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/react': 2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
+      '@rivetkit/react': 2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0)
       hono: 4.11.4
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -523,17 +523,17 @@ packages:
     engines: {node: '>=20'}
     dev: false
 
-  /@rivetkit/react@2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-Gbs8HbMD3PXbOJZxQH+6PQgW2hiu8Pn8eJNM4N8pHFf5239+isiYxrZcckFs/9PCBE/QTLpETfSzgwpPf8aTFw==}
+  /@rivetkit/react@2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-kqUsljj7UaS/dDdAzzE6TmZoo+tN2sKNLRYtDmsY0KGW4TGcaCA/05CAz9Kihnx+44zRp893HYME9+m/W7PyBg==}
     peerDependencies:
       react: ^18 || ^19
       react-dom: ^18 || ^19
     dependencies:
-      '@rivetkit/framework-base': 2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      '@rivetkit/framework-base': 2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
       '@tanstack/react-store': 0.7.7(react-dom@19.1.0)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      rivetkit: 2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
+      rivetkit: 2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0)
     transitivePeerDependencies:
       - '@hono/node-server'
       - '@hono/node-ws'
@@ -603,8 +603,13 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: false
 
-  /caniuse-lite@1.0.30001751:
-    resolution: {integrity: sha512-A0QJhug0Ly64Ii3eIqHu5X51ebln3k4yTUkY1j8drqpWHVreg/VLijN48cZ1bYPiqOQuqpkIKnzr/Ul8V+p6Cw==}
+  /baseline-browser-mapping@2.9.17:
+    resolution: {integrity: sha512-agD0MgJFUP/4nvjqzIB29zRPUuCF7Ge6mEv9s8dHrtYD7QWXRcx75rOADE/d5ah1NI+0vkDl0yorDd5U852IQQ==}
+    hasBin: true
+    dev: false
+
+  /caniuse-lite@1.0.30001765:
+    resolution: {integrity: sha512-LWcNtSyZrakjECqmpP4qdg0MMGdN368D7X8XvvAqOcqMv0RxnlqVKZl2V6/mBR68oYMxOZPLw/gO7DuisMHUvQ==}
     dev: false
 
   /cbor-extract@2.2.0:
@@ -703,9 +708,9 @@ packages:
     hasBin: true
     dev: false
 
-  /next@15.4.8(react-dom@19.1.0)(react@19.1.0):
-    resolution: {integrity: sha512-jwOXTz/bo0Pvlf20FSb6VXVeWRssA2vbvq9SdrOPEg9x8E1B27C2rQtvriAn600o9hH61kjrVRexEffv3JybuA==}
-    engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
+  /next@16.1.4(react-dom@19.1.0)(react@19.1.0):
+    resolution: {integrity: sha512-gKSecROqisnV7Buen5BfjmXAm7Xlpx9o2ueVQRo5DxQcjC8d330dOM1xiGWc2k3Dcnz0In3VybyRPOsudwgiqQ==}
+    engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
       '@opentelemetry/api': ^1.1.0
@@ -724,22 +729,23 @@ packages:
       sass:
         optional: true
     dependencies:
-      '@next/env': 15.4.8
+      '@next/env': 16.1.4
       '@swc/helpers': 0.5.15
-      caniuse-lite: 1.0.30001751
+      baseline-browser-mapping: 2.9.17
+      caniuse-lite: 1.0.30001765
       postcss: 8.4.31
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       styled-jsx: 5.1.6(react@19.1.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.4.8
-      '@next/swc-darwin-x64': 15.4.8
-      '@next/swc-linux-arm64-gnu': 15.4.8
-      '@next/swc-linux-arm64-musl': 15.4.8
-      '@next/swc-linux-x64-gnu': 15.4.8
-      '@next/swc-linux-x64-musl': 15.4.8
-      '@next/swc-win32-arm64-msvc': 15.4.8
-      '@next/swc-win32-x64-msvc': 15.4.8
+      '@next/swc-darwin-arm64': 16.1.4
+      '@next/swc-darwin-x64': 16.1.4
+      '@next/swc-linux-arm64-gnu': 16.1.4
+      '@next/swc-linux-arm64-musl': 16.1.4
+      '@next/swc-linux-x64-gnu': 16.1.4
+      '@next/swc-linux-x64-musl': 16.1.4
+      '@next/swc-win32-arm64-msvc': 16.1.4
+      '@next/swc-win32-x64-msvc': 16.1.4
       sharp: 0.34.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -847,8 +853,8 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
-  /rivetkit@2.0.40(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
-    resolution: {integrity: sha512-VihHC6TQJQsT/liiceZ/rWptIPTqV1kqIpNxDlKxhk0Uoyqzirjy7s+6ScwPMw2mxSyTqrYBHqF08OqTL8nLQw==}
+  /rivetkit@2.0.41(@standard-schema/spec@1.0.0)(eventsource@4.0.0):
+    resolution: {integrity: sha512-HEAOqBPJSX9cDslXorDYLf0RoQXrQ0O3CF+ZqnRoO46ltjtfEDIqk1LvX/pmoe+rt/iBWRMwfinQAzfOyrWcnQ==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       '@hono/node-server': ^1.14.0
@@ -868,7 +874,7 @@ packages:
       '@hono/standard-validator': 0.1.5(@standard-schema/spec@1.0.0)(hono@4.11.4)
       '@hono/zod-openapi': 1.2.0(hono@4.11.4)(zod@4.3.5)
       '@rivetkit/bare-ts': 0.6.2
-      '@rivetkit/engine-runner': 2.0.40
+      '@rivetkit/engine-runner': 2.0.41
       '@rivetkit/fast-json-patch': 3.1.2
       '@rivetkit/on-change': 6.0.2-rc.1
       '@rivetkit/virtual-websocket': 2.0.33
