@@ -20,13 +20,13 @@ This repo contains a GitHub Action workflow (`.github/workflows/rivet-preview.ym
 
 ### Required Secrets
 
+Only 2 secrets needed - everything else is auto-detected:
+
 - `RIVET_CLOUD_TOKEN` - Rivet Cloud API token
-- `VERCEL_TOKEN` - Vercel API token
-- `VERCEL_ORG_ID` - Vercel team/org ID
-- `VERCEL_PROJECT_ID` - Vercel project ID
+- `VERCEL_TOKEN` - Vercel API token (get from https://vercel.com/account/tokens)
+
+The Vercel project ID, team ID, project name, and team slug are all auto-detected from the GitHub repository link.
 
 ### Optional Variables
 
 - `RIVET_ENGINE_ENDPOINT` - Defaults to `https://api.rivet.dev`
-
-The Vercel project name and team slug are auto-detected from the Vercel API.

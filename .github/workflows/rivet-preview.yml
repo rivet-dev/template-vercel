@@ -27,8 +27,6 @@ jobs:
           RIVET_CLOUD_TOKEN: ${{ secrets.RIVET_CLOUD_TOKEN }}
           RIVET_ENGINE_ENDPOINT: ${{ vars.RIVET_ENGINE_ENDPOINT }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
           BRANCH_NAME: ${{ github.head_ref }}
           REPO_FULL_NAME: ${{ github.repository }}

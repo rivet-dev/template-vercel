@@ -6,8 +6,6 @@ const RIVET_CLOUD_TOKEN = process.env.RIVET_CLOUD_TOKEN!;
 const RIVET_CLOUD_ENDPOINT = "https://api.rivet.dev";
 const RIVET_ENGINE_ENDPOINT = process.env.RIVET_ENGINE_ENDPOINT || "https://api.rivet.dev";
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN!;
-const VERCEL_ORG_ID = process.env.VERCEL_ORG_ID!;
-const VERCEL_PROJECT_ID = process.env.VERCEL_PROJECT_ID!;
 const PR_NUMBER = process.env.PR_NUMBER!;
 const BRANCH_NAME = process.env.BRANCH_NAME!;
 const REPO_FULL_NAME = process.env.REPO_FULL_NAME!;
@@ -16,42 +14,77 @@ const RUN_ID = process.env.RUN_ID!;
 const COMMENT_MARKER = "<!-- rivet-preview-status -->";
 
 // Vercel project info (auto-detected)
+let VERCEL_PROJECT_ID: string;
+let VERCEL_TEAM_ID: string | undefined;
 let VERCEL_PROJECT_NAME: string;
 let VERCEL_TEAM_SLUG: string;
 
 async function getVercelProjectInfo(): Promise<void> {
-	// Get project info
-	const projectResponse = await fetch(
-		`https://api.vercel.com/v9/projects/${VERCEL_PROJECT_ID}?teamId=${VERCEL_ORG_ID}`,
-		{
-			headers: {
-				Authorization: `Bearer ${VERCEL_TOKEN}`,
-			},
-		}
-	);
+	// Find project by GitHub repo
+	const searchUrl = `https://api.vercel.com/v9/projects?repo=${encodeURIComponent(REPO_FULL_NAME)}`;
+	console.log(`Searching for Vercel project: ${searchUrl}`);
 
-	if (!projectResponse.ok) {
-		throw new Error(`Failed to get Vercel project info: ${projectResponse.status}`);
+	const searchResponse = await fetch(searchUrl, {
+		headers: {
+			Authorization: `Bearer ${VERCEL_TOKEN}`,
+		},
+	});
+
+	if (!searchResponse.ok) {
+		const text = await searchResponse.text();
+		throw new Error(`Failed to search Vercel projects: ${searchResponse.status} ${text}`);
 	}
 
-	const project = await projectResponse.json();
+	const searchResult = await searchResponse.json();
+
+	if (!searchResult.projects || searchResult.projects.length === 0) {
+		throw new Error(`No Vercel project found linked to GitHub repo: ${REPO_FULL_NAME}`);
+	}
+
+	const project = searchResult.projects[0];
+	VERCEL_PROJECT_ID = project.id;
 	VERCEL_PROJECT_NAME = project.name;
+	VERCEL_TEAM_ID = project.accountId;
 
-	// Get team info to get the slug
-	const teamResponse = await fetch(
-		`https://api.vercel.com/v2/teams/${VERCEL_ORG_ID}`,
-		{
-			headers: {
-				Authorization: `Bearer ${VERCEL_TOKEN}`,
-			},
+	console.log(`Found Vercel project: ${VERCEL_PROJECT_NAME} (${VERCEL_PROJECT_ID})`);
+
+	// Get team/user slug for URL generation
+	if (VERCEL_TEAM_ID) {
+		// Try to get team info
+		const teamResponse = await fetch(
+			`https://api.vercel.com/v2/teams/${VERCEL_TEAM_ID}`,
+			{
+				headers: {
+					Authorization: `Bearer ${VERCEL_TOKEN}`,
+				},
+			}
+		);
+
+		if (teamResponse.ok) {
+			const team = await teamResponse.json();
+			VERCEL_TEAM_SLUG = team.slug;
+			console.log(`Found Vercel team: ${VERCEL_TEAM_SLUG}`);
+		} else {
+			// Not a team, get user info
+			const userResponse = await fetch(
+				`https://api.vercel.com/v2/user`,
+				{
+					headers: {
+						Authorization: `Bearer ${VERCEL_TOKEN}`,
+					},
+				}
+			);
+
+			if (!userResponse.ok) {
+				throw new Error(`Failed to get Vercel user info: ${userResponse.status}`);
+			}
+
+			const user = await userResponse.json();
+			VERCEL_TEAM_SLUG = user.user?.username || user.username;
+			console.log(`Found Vercel user: ${VERCEL_TEAM_SLUG}`);
 		}
-	);
-
-	if (teamResponse.ok) {
-		const team = await teamResponse.json();
-		VERCEL_TEAM_SLUG = team.slug;
 	} else {
-		// If not a team, get user info
+		// No team, get user info
 		const userResponse = await fetch(
 			`https://api.vercel.com/v2/user`,
 			{
@@ -67,6 +100,7 @@ async function getVercelProjectInfo(): Promise<void> {
 
 		const user = await userResponse.json();
 		VERCEL_TEAM_SLUG = user.user?.username || user.username;
+		console.log(`Found Vercel user: ${VERCEL_TEAM_SLUG}`);
 	}
 
 	console.log(`Detected Vercel project: ${VERCEL_PROJECT_NAME}, team/user: ${VERCEL_TEAM_SLUG}`);
@@ -103,6 +137,10 @@ async function findExistingComment(): Promise<number | null> {
 		}
 	);
 	const comments = await response.json();
+	if (!Array.isArray(comments)) {
+		console.log("Comments response:", comments);
+		return null;
+	}
 	const existing = comments.find((c: any) => c.body?.includes(COMMENT_MARKER));
 	return existing?.id ?? null;
 }
@@ -174,9 +212,11 @@ async function setVercelEnvVar(
 	value: string,
 	branch: string
 ): Promise<void> {
+	const teamQuery = VERCEL_TEAM_ID ? `teamId=${VERCEL_TEAM_ID}` : "";
+
 	// Check if env var exists for this branch
 	const listResponse = await fetch(
-		`https://api.vercel.com/v9/projects/${VERCEL_PROJECT_ID}/env?teamId=${VERCEL_ORG_ID}`,
+		`https://api.vercel.com/v9/projects/${VERCEL_PROJECT_ID}/env?${teamQuery}`,
 		{
 			headers: {
 				Authorization: `Bearer ${VERCEL_TOKEN}`,
@@ -195,7 +235,7 @@ async function setVercelEnvVar(
 	if (existing) {
 		// Update existing
 		await fetch(
-			`https://api.vercel.com/v9/projects/${VERCEL_PROJECT_ID}/env/${existing.id}?teamId=${VERCEL_ORG_ID}`,
+			`https://api.vercel.com/v9/projects/${VERCEL_PROJECT_ID}/env/${existing.id}?${teamQuery}`,
 			{
 				method: "PATCH",
 				headers: {
@@ -208,7 +248,7 @@ async function setVercelEnvVar(
 	} else {
 		// Create new
 		await fetch(
-			`https://api.vercel.com/v10/projects/${VERCEL_PROJECT_ID}/env?teamId=${VERCEL_ORG_ID}`,
+			`https://api.vercel.com/v10/projects/${VERCEL_PROJECT_ID}/env?${teamQuery}`,
 			{
 				method: "POST",
 				headers: {
