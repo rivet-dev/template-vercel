@@ -20,25 +20,53 @@ let VERCEL_PROJECT_NAME: string;
 let VERCEL_TEAM_SLUG: string;
 
 async function getVercelProjectInfo(): Promise<void> {
-	// Find project by GitHub repo
-	const searchUrl = `https://api.vercel.com/v9/projects?repo=${encodeURIComponent(REPO_FULL_NAME)}`;
-	console.log(`Searching for Vercel project: ${searchUrl}`);
+	// First, list all projects to find the one linked to this repo
+	console.log(`Searching for Vercel project linked to: ${REPO_FULL_NAME}`);
 
-	const searchResponse = await fetch(searchUrl, {
+	// Try searching with repo filter first
+	let searchUrl = `https://api.vercel.com/v9/projects?repo=${encodeURIComponent(REPO_FULL_NAME)}`;
+	console.log(`Trying: ${searchUrl}`);
+
+	let searchResponse = await fetch(searchUrl, {
 		headers: {
 			Authorization: `Bearer ${VERCEL_TOKEN}`,
 		},
 	});
 
-	if (!searchResponse.ok) {
-		const text = await searchResponse.text();
-		throw new Error(`Failed to search Vercel projects: ${searchResponse.status} ${text}`);
+	let searchResult = await searchResponse.json();
+	console.log(`Search result: ${JSON.stringify(searchResult).substring(0, 500)}`);
+
+	// If no results, try listing all projects and filtering manually
+	if (!searchResult.projects || searchResult.projects.length === 0) {
+		console.log("No results with repo filter, listing all projects...");
+
+		const listUrl = `https://api.vercel.com/v9/projects?limit=100`;
+		const listResponse = await fetch(listUrl, {
+			headers: {
+				Authorization: `Bearer ${VERCEL_TOKEN}`,
+			},
+		});
+
+		const listResult = await listResponse.json();
+		console.log(`Found ${listResult.projects?.length || 0} projects`);
+
+		// Find project with matching repo
+		const matchingProject = listResult.projects?.find((p: any) => {
+			const repoUrl = p.link?.repo;
+			const repoName = p.link?.repoId;
+			console.log(`Project: ${p.name}, repo: ${repoUrl || repoName || 'none'}`);
+			return repoUrl === REPO_FULL_NAME ||
+				   repoUrl === `https://github.com/${REPO_FULL_NAME}` ||
+				   p.name === 'template-vercel';
+		});
+
+		if (matchingProject) {
+			searchResult = { projects: [matchingProject] };
+		}
 	}
 
-	const searchResult = await searchResponse.json();
-
 	if (!searchResult.projects || searchResult.projects.length === 0) {
-		throw new Error(`No Vercel project found linked to GitHub repo: ${REPO_FULL_NAME}`);
+		throw new Error(`No Vercel project found linked to GitHub repo: ${REPO_FULL_NAME}. Make sure the project is linked to this repo in Vercel.`);
 	}
 
 	const project = searchResult.projects[0];
