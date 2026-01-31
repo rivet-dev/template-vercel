@@ -25,7 +25,6 @@ async function getVercelProjectInfo(): Promise<void> {
 
 	// Try searching with repo filter first
 	let searchUrl = `https://api.vercel.com/v9/projects?repo=${encodeURIComponent(REPO_FULL_NAME)}`;
-	console.log(`Trying: ${searchUrl}`);
 
 	let searchResponse = await fetch(searchUrl, {
 		headers: {
@@ -34,7 +33,6 @@ async function getVercelProjectInfo(): Promise<void> {
 	});
 
 	let searchResult = await searchResponse.json();
-	console.log(`Search result: ${JSON.stringify(searchResult).substring(0, 500)}`);
 
 	// If no results, try listing all projects and filtering manually
 	if (!searchResult.projects || searchResult.projects.length === 0) {
@@ -48,16 +46,13 @@ async function getVercelProjectInfo(): Promise<void> {
 		});
 
 		const listResult = await listResponse.json();
-		console.log(`Found ${listResult.projects?.length || 0} projects`);
 
-		// Find project with matching repo
+		// Find project with matching repo or name
 		const matchingProject = listResult.projects?.find((p: any) => {
 			const repoUrl = p.link?.repo;
-			const repoName = p.link?.repoId;
-			console.log(`Project: ${p.name}, repo: ${repoUrl || repoName || 'none'}`);
 			return repoUrl === REPO_FULL_NAME ||
 				   repoUrl === `https://github.com/${REPO_FULL_NAME}` ||
-				   p.name === 'template-vercel';
+				   p.name === REPO_FULL_NAME.split('/')[1];
 		});
 
 		if (matchingProject) {
@@ -137,7 +132,6 @@ async function getVercelProjectInfo(): Promise<void> {
 // Rivet Cloud API helpers
 async function rivetCloudFetch(path: string, options: RequestInit = {}): Promise<any> {
 	const url = `${RIVET_CLOUD_ENDPOINT}${path}`;
-	console.log(`Rivet Cloud API: ${options.method || 'GET'} ${url}`);
 
 	const response = await fetch(url, {
 		...options,
@@ -153,9 +147,7 @@ async function rivetCloudFetch(path: string, options: RequestInit = {}): Promise
 		throw new Error(`Rivet Cloud API error: ${response.status} ${text}`);
 	}
 
-	const result = await response.json();
-	console.log(`Rivet Cloud API response: ${JSON.stringify(result).substring(0, 200)}`);
-	return result;
+	return response.json();
 }
 
 // GitHub API helpers
