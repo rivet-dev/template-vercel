@@ -397,18 +397,14 @@ async function main() {
 		let namespace: any;
 		let engineNamespace: string;
 
-		// Get PR title for display name
-		// Format: "#8 title..." (16 chars max per cloud API)
-		// PR number ensures uniqueness, title provides context
+		// Get PR title for display name (128 bytes max per cloud API)
 		const prTitle = await getPrTitle();
-		const prPrefix = `#${PR_NUMBER} `;
-		const maxTitleChars = 16 - prPrefix.length;
-		const displayName = prPrefix + prTitle.substring(0, maxTitleChars);
+		const displayName = prTitle.length > 128 ? prTitle.substring(0, 128) : prTitle;
 
 		try {
 			const { namespaces } = await rivetCloudFetch(`/projects/${project}/namespaces?org=${organization}&limit=100`);
-			// Match by display name prefix (#PR_NUMBER )
-			const existing = namespaces?.find((ns: any) => ns.displayName?.startsWith(`#${PR_NUMBER} `));
+			// Match by namespace name pattern (starts with pr-{number}- since API adds suffix)
+			const existing = namespaces?.find((ns: any) => ns.name.startsWith(`${namespaceName}-`));
 
 			if (existing) {
 				// Reuse existing namespace - fetch full details
