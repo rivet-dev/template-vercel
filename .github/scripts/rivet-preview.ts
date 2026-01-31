@@ -136,7 +136,10 @@ async function getVercelProjectInfo(): Promise<void> {
 
 // Rivet Cloud API helpers
 async function rivetCloudFetch(path: string, options: RequestInit = {}): Promise<any> {
-	const response = await fetch(`${RIVET_CLOUD_ENDPOINT}${path}`, {
+	const url = `${RIVET_CLOUD_ENDPOINT}${path}`;
+	console.log(`Rivet Cloud API: ${options.method || 'GET'} ${url}`);
+
+	const response = await fetch(url, {
 		...options,
 		headers: {
 			Authorization: `Bearer ${RIVET_CLOUD_TOKEN}`,
@@ -150,7 +153,9 @@ async function rivetCloudFetch(path: string, options: RequestInit = {}): Promise
 		throw new Error(`Rivet Cloud API error: ${response.status} ${text}`);
 	}
 
-	return response.json();
+	const result = await response.json();
+	console.log(`Rivet Cloud API response: ${JSON.stringify(result).substring(0, 200)}`);
+	return result;
 }
 
 // GitHub API helpers
