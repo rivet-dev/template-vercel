@@ -351,28 +351,30 @@ async function main() {
 		let namespace: any;
 		let engineNamespace: string;
 
+		const displayName = `PR #${PR_NUMBER}`;
+
 		try {
 			const { namespaces } = await rivetCloudFetch(`/projects/${project}/namespaces?org=${organization}&limit=100`);
-			const existing = namespaces?.find((ns: any) => ns.name === namespaceName);
+			const existing = namespaces?.find((ns: any) => ns.displayName === displayName);
 
 			if (existing) {
-				// Get full namespace info with access details
-				const { namespace: fullNs } = await rivetCloudFetch(`/projects/${project}/namespaces/${namespaceName}?org=${organization}`);
+				// Reuse existing namespace - fetch full details
+				const { namespace: fullNs } = await rivetCloudFetch(`/projects/${project}/namespaces/${existing.name}?org=${organization}`);
 				namespace = fullNs;
-				engineNamespace = namespace.access?.engineNamespaceName || namespaceName;
-				console.log(`Namespace ${namespaceName} already exists, engineNamespace: ${engineNamespace}`);
+				engineNamespace = namespace.access?.engineNamespaceName || namespace.name;
+				console.log(`Reusing existing namespace ${namespace.name} (${displayName})`);
 			} else {
 				// Create new namespace
 				const result = await rivetCloudFetch(`/projects/${project}/namespaces?org=${organization}`, {
 					method: "POST",
 					body: JSON.stringify({
 						name: namespaceName,
-						displayName: `PR #${PR_NUMBER}`,
+						displayName,
 					}),
 				});
 				namespace = result.namespace;
-				engineNamespace = namespace.access?.engineNamespaceName || namespaceName;
-				console.log(`Created namespace ${namespaceName}, engineNamespace: ${engineNamespace}`);
+				engineNamespace = namespace.access?.engineNamespaceName || namespace.name;
+				console.log(`Created namespace ${namespace.name} (${displayName})`);
 			}
 		} catch (e: any) {
 			console.log(`Error listing namespaces, trying to create: ${e.message}`);
@@ -381,12 +383,12 @@ async function main() {
 				method: "POST",
 				body: JSON.stringify({
 					name: namespaceName,
-					displayName: `PR #${PR_NUMBER}`,
+					displayName,
 				}),
 			});
 			namespace = result.namespace;
-			engineNamespace = namespace.access?.engineNamespaceName || namespaceName;
-			console.log(`Created namespace ${namespaceName}, engineNamespace: ${engineNamespace}`);
+			engineNamespace = namespace.access?.engineNamespaceName || namespace.name;
+			console.log(`Created namespace ${namespace.name} (${displayName})`);
 		}
 
 		// Create tokens (always create fresh ones)
