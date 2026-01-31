@@ -387,7 +387,7 @@ async function main() {
 		// Step 1: Creating namespace
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Creating namespace... | \`${namespaceName}\` | - |`
+			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Creating namespace... | \`${namespaceName}\` | - |`
 		);
 
 		// Get project/org info from token
@@ -473,7 +473,7 @@ async function main() {
 		const dashboardUrl = `https://hub.rivet.dev/projects/${project}/namespaces/${namespace.name}?skipOnboarding=1`;
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Configuring Vercel... | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
+			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Configuring Vercel... | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		await setVercelEnvVar("RIVET_ENDPOINT", RIVET_ENGINE_ENDPOINT, BRANCH_NAME);
@@ -486,7 +486,7 @@ async function main() {
 		// Step 3: Wait for Vercel deployment and configure runner
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Waiting for Vercel... | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
+			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Waiting for Vercel... | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		const vercelUrl = await getVercelDeploymentUrl(BRANCH_NAME);
@@ -494,7 +494,7 @@ async function main() {
 
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Configuring runner... | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
+			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Configuring runner... | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		await configureRunner(RIVET_ENGINE_ENDPOINT, accessToken, engineNamespace, vercelUrl);
@@ -504,7 +504,7 @@ async function main() {
 		// Step 4: Success!
 		await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ✅ Ready | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
+			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ✅ Ready | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		console.log("Done!");
