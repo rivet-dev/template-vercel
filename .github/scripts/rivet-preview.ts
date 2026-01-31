@@ -149,6 +149,20 @@ async function rivetCloudFetch(path: string, options: RequestInit = {}): Promise
 }
 
 // GitHub API helpers
+async function getPrTitle(): Promise<string> {
+	const response = await fetch(
+		`https://api.github.com/repos/${REPO_FULL_NAME}/pulls/${PR_NUMBER}`,
+		{
+			headers: {
+				Authorization: `token ${GITHUB_TOKEN}`,
+				Accept: "application/vnd.github.v3+json",
+			},
+		}
+	);
+	const pr = await response.json();
+	return pr.title || `PR #${PR_NUMBER}`;
+}
+
 async function findExistingComment(): Promise<number | null> {
 	const response = await fetch(
 		`https://api.github.com/repos/${REPO_FULL_NAME}/issues/${PR_NUMBER}/comments`,
@@ -383,21 +397,21 @@ async function main() {
 		let namespace: any;
 		let engineNamespace: string;
 
-		// Display name: "pr-{number}" (max 16 chars per cloud API)
-		// This matches the namespace name pattern and ensures uniqueness
-		const displayName = `pr-${PR_NUMBER}`;
+		// Get PR title for display name (truncate to 16 chars per cloud API limit)
+		const prTitle = await getPrTitle();
+		const displayName = prTitle.length > 16 ? prTitle.substring(0, 16) : prTitle;
 
 		try {
 			const { namespaces } = await rivetCloudFetch(`/projects/${project}/namespaces?org=${organization}&limit=100`);
-			// Match by display name (pr-{number} pattern)
-			const existing = namespaces?.find((ns: any) => ns.displayName === displayName);
+			// Match by namespace name pattern (pr-{number}-*) since name is unique per PR
+			const existing = namespaces?.find((ns: any) => ns.name.startsWith(`${namespaceName}-`));
 
 			if (existing) {
 				// Reuse existing namespace - fetch full details
 				const { namespace: fullNs } = await rivetCloudFetch(`/projects/${project}/namespaces/${existing.name}?org=${organization}`);
 				namespace = fullNs;
 				engineNamespace = namespace.access?.engineNamespaceName || namespace.name;
-				console.log(`Reusing existing namespace ${namespace.name} (${displayName})`);
+				console.log(`Reusing existing namespace ${namespace.name}`);
 			} else {
 				// Create new namespace
 				const result = await rivetCloudFetch(`/projects/${project}/namespaces?org=${organization}`, {
