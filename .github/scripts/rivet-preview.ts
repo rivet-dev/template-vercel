@@ -1,5 +1,3 @@
-import { createHash } from "crypto";
-
 // Environment variables
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN!;
 const RIVET_CLOUD_TOKEN = process.env.RIVET_CLOUD_TOKEN!;
@@ -205,30 +203,64 @@ async function updateComment(commentId: number | null, body: string): Promise<nu
 	}
 }
 
-// Vercel URL generation
-function sanitizeBranchName(branch: string): string {
-	return branch
-		.replace(/\//, "-") // First slash to hyphen
-		.replace(/\//g, "") // Remove remaining slashes
-		.replace(/[^a-z0-9]/gi, "-") // Non-alphanumeric to hyphen
-		.toLowerCase();
-}
+// Get Vercel deployment URL for a branch (prefers stable branch alias over unique deployment URL)
+async function getVercelDeploymentUrl(branch: string, maxWaitMs: number = 120000): Promise<string> {
+	const teamQuery = VERCEL_TEAM_ID ? `teamId=${VERCEL_TEAM_ID}` : "";
+	const startTime = Date.now();
 
-function generateVercelPreviewUrl(projectName: string, branch: string, teamSlug: string): string {
-	const safeBranch = sanitizeBranchName(branch);
-	const baseUrl = `${projectName}-git-${safeBranch}-${teamSlug}`;
+	while (Date.now() - startTime < maxWaitMs) {
+		const response = await fetch(
+			`https://api.vercel.com/v6/deployments?projectId=${VERCEL_PROJECT_ID}&${teamQuery}&limit=10`,
+			{
+				headers: {
+					Authorization: `Bearer ${VERCEL_TOKEN}`,
+				},
+			}
+		);
 
-	// Truncate if > 63 chars
-	if (baseUrl.length > 63) {
-		const hash = createHash("sha256")
-			.update(`${branch}${projectName}`)
-			.digest("hex")
-			.substring(0, 6);
-		const truncatedBase = baseUrl.substring(0, 63 - 7); // Leave room for -hash
-		return `${truncatedBase}-${hash}.vercel.app`;
+		const { deployments } = await response.json();
+
+		// Find any deployment for this branch
+		const branchDeployment = deployments?.find((d: any) =>
+			d.meta?.githubCommitRef === branch
+		);
+
+		if (branchDeployment) {
+			// Get deployment details to find the stable branch alias
+			const detailResponse = await fetch(
+				`https://api.vercel.com/v13/deployments/${branchDeployment.uid}?${teamQuery}`,
+				{
+					headers: {
+						Authorization: `Bearer ${VERCEL_TOKEN}`,
+					},
+				}
+			);
+
+			const detail = await detailResponse.json();
+			console.log(`Deployment aliases: ${JSON.stringify(detail.alias)}`);
+
+			// Prefer the branch-specific alias (contains -git-) which stays stable across deploys
+			const branchAlias = detail.alias?.find((a: string) =>
+				a.includes("-git-") && a.includes(VERCEL_PROJECT_NAME)
+			);
+
+			if (branchAlias) {
+				return branchAlias;
+			}
+
+			// Fall back to the unique deployment URL if no alias yet
+			if (detail.url) {
+				console.log("No branch alias found, using deployment URL");
+				return detail.url;
+			}
+		}
+
+		// Wait before polling again
+		console.log("Waiting for Vercel deployment...");
+		await new Promise(resolve => setTimeout(resolve, 5000));
 	}
 
-	return `${baseUrl}.vercel.app`;
+	throw new Error(`Timed out waiting for Vercel deployment for branch: ${branch}`);
 }
 
 // Vercel API helpers
@@ -425,8 +457,14 @@ async function main() {
 
 		console.log("Set Vercel env vars");
 
-		// Step 3: Generate Vercel URL and configure runner
-		const vercelUrl = generateVercelPreviewUrl(VERCEL_PROJECT_NAME, BRANCH_NAME, VERCEL_TEAM_SLUG);
+		// Step 3: Wait for Vercel deployment and configure runner
+		commentId = await updateComment(
+			commentId,
+			`## Rivet Preview Environment\n\n✅ Namespace \`${namespaceName}\` ready\n✅ Vercel environment configured\n\n⏳ **Waiting for Vercel deployment**...`
+		);
+
+		const vercelUrl = await getVercelDeploymentUrl(BRANCH_NAME);
+		console.log(`Got Vercel deployment URL: ${vercelUrl}`);
 
 		commentId = await updateComment(
 			commentId,
