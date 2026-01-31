@@ -203,7 +203,7 @@ async function updateComment(commentId: number | null, body: string): Promise<nu
 	}
 }
 
-// Get Vercel deployment URL for a branch
+// Get Vercel deployment URL for a branch (prefers stable branch alias over unique deployment URL)
 async function getVercelDeploymentUrl(branch: string, maxWaitMs: number = 120000): Promise<string> {
 	const teamQuery = VERCEL_TEAM_ID ? `teamId=${VERCEL_TEAM_ID}` : "";
 	const startTime = Date.now();
@@ -220,22 +220,13 @@ async function getVercelDeploymentUrl(branch: string, maxWaitMs: number = 120000
 
 		const { deployments } = await response.json();
 
-		// Find deployment for this branch
-		const deployment = deployments?.find((d: any) =>
-			d.meta?.githubCommitRef === branch && d.state === "READY"
-		);
-
-		if (deployment?.url) {
-			return deployment.url;
-		}
-
-		// Also check for alias URL which is the branch-specific preview URL
+		// Find any deployment for this branch
 		const branchDeployment = deployments?.find((d: any) =>
 			d.meta?.githubCommitRef === branch
 		);
 
 		if (branchDeployment) {
-			// Get deployment details to find the alias
+			// Get deployment details to find the stable branch alias
 			const detailResponse = await fetch(
 				`https://api.vercel.com/v13/deployments/${branchDeployment.uid}?${teamQuery}`,
 				{
@@ -246,8 +237,9 @@ async function getVercelDeploymentUrl(branch: string, maxWaitMs: number = 120000
 			);
 
 			const detail = await detailResponse.json();
+			console.log(`Deployment aliases: ${JSON.stringify(detail.alias)}`);
 
-			// Find the branch-specific alias (not the unique deployment URL)
+			// Prefer the branch-specific alias (contains -git-) which stays stable across deploys
 			const branchAlias = detail.alias?.find((a: string) =>
 				a.includes("-git-") && a.includes(VERCEL_PROJECT_NAME)
 			);
@@ -256,8 +248,9 @@ async function getVercelDeploymentUrl(branch: string, maxWaitMs: number = 120000
 				return branchAlias;
 			}
 
-			// Fall back to the deployment URL if no alias yet
+			// Fall back to the unique deployment URL if no alias yet
 			if (detail.url) {
+				console.log("No branch alias found, using deployment URL");
 				return detail.url;
 			}
 		}
