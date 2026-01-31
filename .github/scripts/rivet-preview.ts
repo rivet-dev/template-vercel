@@ -315,7 +315,7 @@ async function configureRunner(
 		},
 		body: JSON.stringify({
 			datacenters: {
-				us-west-1: {
+				"us-west-1": {
 					serverless: {
 						url: `https://${vercelUrl}/api/rivet`,
 						headers: {},
