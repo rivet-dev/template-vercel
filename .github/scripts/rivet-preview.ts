@@ -387,7 +387,7 @@ async function main() {
 		// Step 1: Creating namespace
 		commentId = await updateComment(
 			commentId,
-			`## Rivet Preview Environment\n\n⏳ **Creating Rivet namespace** \`${namespaceName}\`...`
+			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Creating namespace... | \`${namespaceName}\` | - |`
 		);
 
 		// Get project/org info from token
@@ -466,9 +466,10 @@ async function main() {
 		console.log("Created tokens");
 
 		// Step 2: Configure Vercel env vars
+		const dashboardUrl = `https://hub.rivet.dev/projects/${project}/namespaces/${namespace.name}`;
 		commentId = await updateComment(
 			commentId,
-			`## Rivet Preview Environment\n\n✅ Namespace \`${namespaceName}\` ready\n\n⏳ **Configuring Vercel environment variables**...`
+			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Configuring Vercel... | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		await setVercelEnvVar("RIVET_ENDPOINT", RIVET_ENGINE_ENDPOINT, BRANCH_NAME);
@@ -481,7 +482,7 @@ async function main() {
 		// Step 3: Wait for Vercel deployment and configure runner
 		commentId = await updateComment(
 			commentId,
-			`## Rivet Preview Environment\n\n✅ Namespace \`${namespaceName}\` ready\n✅ Vercel environment configured\n\n⏳ **Waiting for Vercel deployment**...`
+			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Waiting for Vercel... | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		const vercelUrl = await getVercelDeploymentUrl(BRANCH_NAME);
@@ -489,7 +490,7 @@ async function main() {
 
 		commentId = await updateComment(
 			commentId,
-			`## Rivet Preview Environment\n\n✅ Namespace \`${namespaceName}\` ready\n✅ Vercel environment configured\n\n⏳ **Configuring Rivet runner** for \`${vercelUrl}\`...`
+			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ⏳ Configuring runner... | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		await configureRunner(RIVET_ENGINE_ENDPOINT, accessToken, engineNamespace, vercelUrl);
@@ -497,26 +498,9 @@ async function main() {
 		console.log("Configured runner");
 
 		// Step 4: Success!
-		const dashboardUrl = `https://hub.rivet.dev/projects/${project}/namespaces/${namespace.name}`;
-
 		await updateComment(
 			commentId,
-			`## Rivet Preview Environment
-
-🚀 **Preview is live!**
-
-| Resource | Link |
-|----------|------|
-| Namespace | [\`${namespaceName}\`](${dashboardUrl}) |
-| Vercel Preview | [${vercelUrl}](https://${vercelUrl}) |
-
-### Environment Variables Set
-- \`RIVET_ENDPOINT\` = \`${RIVET_ENGINE_ENDPOINT}\`
-- \`RIVET_NAMESPACE\` = \`${engineNamespace}\`
-- \`RIVET_RUNNER_TOKEN\` = \`sk_***\`
-- \`RIVET_PUBLISHABLE_TOKEN\` = \`pk_***\`
-
-> **Note:** The Vercel deployment may still be building. The preview URL will be available once the deployment completes.`
+			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ✅ Ready | \`${displayName}\` | [Dashboard](${dashboardUrl}) |`
 		);
 
 		console.log("Done!");
@@ -525,15 +509,7 @@ async function main() {
 
 		await updateComment(
 			commentId,
-			`## Rivet Preview Environment
-
-❌ **Failed to setup preview environment**
-
-\`\`\`
-${error.message || error}
-\`\`\`
-
-[View run logs](${runLogsUrl}) and report issues to the Rivet team.`
+			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ❌ Failed: ${(error.message || error).substring(0, 50)}... | - | [Logs](${runLogsUrl}) |`
 		);
 
 		process.exit(1);
