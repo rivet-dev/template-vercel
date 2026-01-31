@@ -28,3 +28,4 @@ export const registry = setup({
 	use: { chatRoom },
 	serveManager: false,
 });
+// test 2
