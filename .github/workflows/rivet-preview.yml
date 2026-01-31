@@ -18,5 +18,6 @@ jobs:
     steps:
       - uses: rivet-dev/preview-namespace-action@v1
         with:
+          platform: vercel
           rivet-token: ${{ secrets.RIVET_CLOUD_TOKEN }}
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
