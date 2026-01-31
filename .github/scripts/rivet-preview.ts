@@ -383,16 +383,14 @@ async function main() {
 		let namespace: any;
 		let engineNamespace: string;
 
-		// Use branch name as display name (truncate if too long)
-		const displayName = BRANCH_NAME.length > 64 ? BRANCH_NAME.substring(0, 61) + "..." : BRANCH_NAME;
+		// Display name: "pr-{number}" (max 16 chars per cloud API)
+		// This matches the namespace name pattern and ensures uniqueness
+		const displayName = `pr-${PR_NUMBER}`;
 
 		try {
 			const { namespaces } = await rivetCloudFetch(`/projects/${project}/namespaces?org=${organization}&limit=100`);
-			// Match by branch name prefix to handle truncation
-			const existing = namespaces?.find((ns: any) =>
-				ns.displayName === displayName ||
-				(BRANCH_NAME.length > 64 && ns.displayName === BRANCH_NAME.substring(0, 61) + "...")
-			);
+			// Match by display name (pr-{number} pattern)
+			const existing = namespaces?.find((ns: any) => ns.displayName === displayName);
 
 			if (existing) {
 				// Reuse existing namespace - fetch full details
