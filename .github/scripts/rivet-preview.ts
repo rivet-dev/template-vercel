@@ -419,6 +419,10 @@ async function main() {
 					body: JSON.stringify({
 						name: namespaceName,
 						displayName,
+						metadata: {
+							skipOnboarding: true,
+							provider: "vercel",
+						},
 					}),
 				});
 				namespace = result.namespace;
@@ -433,6 +437,10 @@ async function main() {
 				body: JSON.stringify({
 					name: namespaceName,
 					displayName,
+					metadata: {
+						skipOnboarding: true,
+						provider: "vercel",
+					},
 				}),
 			});
 			namespace = result.namespace;
