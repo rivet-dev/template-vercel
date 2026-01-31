@@ -307,7 +307,7 @@ async function configureRunner(
 	namespace: string,
 	vercelUrl: string
 ): Promise<void> {
-	const response = await fetch(`${endpoint}/runner-configs/default?namespace=${namespace}`, {
+	const response = await fetch(`${endpoint}/runner-configs/us-west-1?namespace=${namespace}`, {
 		method: "PUT",
 		headers: {
 			Authorization: `Bearer ${accessToken}`,
@@ -315,7 +315,7 @@ async function configureRunner(
 		},
 		body: JSON.stringify({
 			datacenters: {
-				default: {
+				us-west-1: {
 					serverless: {
 						url: `https://${vercelUrl}/api/rivet`,
 						headers: {},
