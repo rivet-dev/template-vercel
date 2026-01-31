@@ -385,9 +385,11 @@ async function main() {
 		await getVercelProjectInfo();
 
 		// Step 1: Creating namespace
+		const intro = `This PR has a Rivet namespace connected to your Vercel deployment. [Learn more](https://rivet.dev/docs)\n\n`;
+		const tableHeader = `| Project | Namespace | Status | Actions |\n|:--------|:----------|:-------|:-------|\n`;
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Creating namespace... | \`${namespaceName}\` | - |`
+			intro + tableHeader + `| \`${VERCEL_PROJECT_NAME}\` | - | Creating... | - |`
 		);
 
 		// Get project/org info from token
@@ -473,7 +475,7 @@ async function main() {
 		const dashboardUrl = `https://hub.rivet.dev/projects/${project}/namespaces/${namespace.name}?skipOnboarding=1`;
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Configuring Vercel... | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
+			intro + tableHeader + `| \`${VERCEL_PROJECT_NAME}\` | \`${namespace.name}\` | Configuring Vercel... | [Dashboard](${dashboardUrl}) |`
 		);
 
 		await setVercelEnvVar("RIVET_ENDPOINT", RIVET_ENGINE_ENDPOINT, BRANCH_NAME);
@@ -486,7 +488,7 @@ async function main() {
 		// Step 3: Wait for Vercel deployment and configure runner
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Waiting for Vercel... | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
+			intro + tableHeader + `| \`${VERCEL_PROJECT_NAME}\` | \`${namespace.name}\` | Waiting for Vercel... | [Dashboard](${dashboardUrl}) |`
 		);
 
 		const vercelUrl = await getVercelDeploymentUrl(BRANCH_NAME);
@@ -494,7 +496,7 @@ async function main() {
 
 		commentId = await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ⏳ Configuring runner... | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
+			intro + tableHeader + `| \`${VERCEL_PROJECT_NAME}\` | \`${namespace.name}\` | Configuring runner... | [Dashboard](${dashboardUrl}) |`
 		);
 
 		await configureRunner(RIVET_ENGINE_ENDPOINT, accessToken, engineNamespace, vercelUrl);
@@ -504,16 +506,19 @@ async function main() {
 		// Step 4: Success!
 		await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|:-------|:----------|:-------|\n| ✅ Ready | \`${namespace.name}\` | [Dashboard](${dashboardUrl}) |`
+			intro + tableHeader + `| \`${VERCEL_PROJECT_NAME}\` | \`${namespace.name}\` | Ready | [Dashboard](${dashboardUrl}) |`
 		);
 
 		console.log("Done!");
 	} catch (error: any) {
 		console.error("Error:", error);
 
+		const errorIntro = `This PR has a Rivet namespace connected to your Vercel deployment. [Learn more](https://rivet.dev/docs)\n\n`;
+		const errorHeader = `| Project | Namespace | Status | Actions |\n|:--------|:----------|:-------|:-------|\n`;
+		const projectName = VERCEL_PROJECT_NAME || "unknown";
 		await updateComment(
 			commentId,
-			`| Status | Namespace | Actions |\n|--------|-----------|--------|\n| ❌ Failed: ${(error.message || error).substring(0, 50)}... | - | [Logs](${runLogsUrl}) |`
+			errorIntro + errorHeader + `| \`${projectName}\` | - | Failed | [Logs](${runLogsUrl}) |`
 		);
 
 		process.exit(1);
