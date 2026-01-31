@@ -397,9 +397,9 @@ async function main() {
 		let namespace: any;
 		let engineNamespace: string;
 
-		// Get PR title for display name (128 bytes max per cloud API)
+		// Get PR title for display name (16 chars max per cloud API)
 		const prTitle = await getPrTitle();
-		const displayName = prTitle.length > 128 ? prTitle.substring(0, 128) : prTitle;
+		const displayName = prTitle.substring(0, 16);
 
 		try {
 			const { namespaces } = await rivetCloudFetch(`/projects/${project}/namespaces?org=${organization}&limit=100`);
