@@ -16,7 +16,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: rivet-dev/vercel-preview-action@v1
+      - uses: rivet-dev/preview-namespace-action@v1
         with:
           rivet-token: ${{ secrets.RIVET_CLOUD_TOKEN }}
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
