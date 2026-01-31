@@ -9,12 +9,12 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
-		"@rivetkit/next-js": "^2.0.41",
+		"@rivetkit/next-js": "^2.0.42",
 		"eventsource": "^4.0.0",
 		"next": "16.1.4",
 		"react": "19.1.0",
 		"react-dom": "19.1.0",
-		"rivetkit": "^2.0.41"
+		"rivetkit": "^2.0.42"
 	},
 	"devDependencies": {
 		"@types/node": "^20",
