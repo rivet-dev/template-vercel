@@ -348,7 +348,7 @@ async function main() {
 		);
 
 		// Get project/org info from token
-		const { project, organization } = await rivetCloudFetch("/api-tokens/inspect");
+		const { project, organization } = await rivetCloudFetch("/tokens/api/inspect");
 
 		// Check if namespace exists, create if not
 		let namespace: any;
