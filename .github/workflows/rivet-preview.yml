@@ -2,7 +2,7 @@ name: Rivet Preview
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
   push:
     branches: [main]
 
@@ -16,7 +16,7 @@ jobs:
     permissions:
       pull-requests: write
     steps:
-      - uses: rivet-dev/preview-namespace-action@v1
+      - uses: rivet-dev/preview-namespace-action@bce6d4f144ef1afd85dd8a4887eaec02e2cf7e48
         with:
           platform: vercel
           rivet-token: ${{ secrets.RIVET_CLOUD_TOKEN }}
